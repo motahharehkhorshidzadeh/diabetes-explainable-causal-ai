@@ -1,164 +1,132 @@
-# 🧠 Explainable & Causal AI for Diabetes Prediction
-
-## 📌 Overview
-
-This project builds an end-to-end machine learning system for predicting diabetes and understanding the underlying factors behind predictions.
-
-Unlike traditional models, this system not only predicts disease risk but also explains decisions and estimates causal effects of treatments.
+# Explainable and Causal Machine Learning for Diabetes Prediction
 
 ---
 
-## 🔬 Problem Statement
+## Abstract
 
-Early detection of diabetes is critical in healthcare.
-This project aims to:
+Early and accurate prediction of diabetes is a critical challenge in healthcare systems. Traditional machine learning models provide high predictive performance but often lack interpretability and causal understanding.
 
-* Predict diabetes risk using patient data
-* Explain model decisions (Why this prediction?)
-* Estimate causal effects (Does treatment actually work?)
+In this project, we propose an end-to-end framework for diabetes prediction using a Random Forest classifier combined with Explainable AI (SHAP) and causal inference techniques. The system not only predicts disease risk but also explains individual predictions and estimates treatment effects using propensity score methods.
 
 ---
 
-## 🧠 Methods Used
+## Keywords
 
-### 🤖 Machine Learning
-
-* Random Forest Classifier
-* Train/Test Split
-* Model Evaluation (Accuracy, Confusion Matrix)
+Machine Learning, Explainable AI, SHAP, Causal Inference, Propensity Score, Healthcare, Diabetes Prediction
 
 ---
 
-### 📊 Explainable AI (SHAP)
+## 1. Introduction
 
-* Global feature importance (Which features matter most?)
-* Local explanations (Why this patient is high risk?)
+Diabetes Mellitus is one of the most common chronic diseases worldwide. Early detection can significantly improve patient outcomes. However, clinical decision-making requires both predictive accuracy and interpretability.
+
+This project addresses three key questions:
+
+* Can we predict diabetes risk accurately?
+* Why does the model make a specific prediction?
+* Does treatment causally reduce disease risk?
 
 ---
 
-### ⚖️ Causal Inference
+## 2. Methodology
 
-* Naive ATE (baseline)
+### 2.1 Data Processing
+
+Patient data includes:
+
+* Age
+* BMI
+* Glucose level
+* Additional clinical features
+
+Missing values are handled using statistical imputation techniques.
+
+---
+
+### 2.2 Machine Learning Model
+
+A Random Forest classifier is used for diabetes prediction due to its:
+
+* Robustness
+* Non-linearity handling
+* Feature importance extraction capability
+
+---
+
+### 2.3 Explainable AI (SHAP)
+
+SHAP (SHapley Additive Explanations) is used to:
+
+* Identify global feature importance
+* Provide local explanations for individual predictions
+* Improve clinical interpretability
+
+---
+
+### 2.4 Causal Inference
+
+To estimate treatment effects beyond correlation, we use:
+
+* Naive Average Treatment Effect (ATE)
 * Propensity Score Modeling
 * Inverse Probability Weighting (IPW)
 
----
-
-## 📁 Project Structure
-
-```
-diabetes-explainable-causal-ai/
-│
-├── data/
-├── notebooks/
-│   ├── 01_preprocessing.ipynb
-│   ├── 02_model.ipynb
-│   ├── 03_shap.ipynb
-│   └── 04_causal.ipynb
-│
-├── src/
-│   ├── preprocessing.py
-│   ├── model.py
-│   ├── shap_utils.py
-│   └── causal.py
-│
-├── results/
-│   ├── confusion_matrix.png
-│   ├── feature_importance.png
-│   ├── shap_summary.png
-│   └── shap_patient_0.png
-│
-├── requirements.txt
-└── README.md
-```
+These methods help correct selection bias and estimate causal impact.
 
 ---
 
-## 📊 Results
+## 3. Experimental Results
 
-### ✔ Model Performance
+### 3.1 Model Performance
 
-* Accurate classification of diabetes risk
-* Evaluated using confusion matrix and accuracy score
+The model achieves strong predictive performance in classifying diabetes risk.
 
-### ✔ Explainability
+### 3.2 Explainability Results
 
-* SHAP identifies key features such as glucose, BMI, and age
-* Provides patient-level explanations
+SHAP analysis shows that:
 
-### ✔ Causal Insights
+* Glucose level is the most influential feature
+* BMI and age also significantly contribute to predictions
 
-* Naive ATE is biased
-* IPW provides adjusted treatment effect
-* Treatment reduces diabetes risk
+### 3.3 Causal Analysis
 
----
-
-## 📸 Visualizations
-
-### Confusion Matrix
-
-![Confusion Matrix](results/confusion_matrix.png)
-
-### Feature Importance
-
-![Feature Importance](results/feature_importance.png)
-
-### SHAP Summary
-
-![SHAP Summary](results/shap_summary.png)
-
-### Patient Explanation
-
-![SHAP Patient](results/shap_patient_0.png)
+* Naive ATE is biased due to confounding
+* IPW provides a more reliable estimate
+* Treatment is associated with reduced diabetes risk
 
 ---
 
-## ⚙️ Installation
+## 4. Discussion
 
-```bash
-pip install -r requirements.txt
-```
+The integration of SHAP and causal inference enhances both transparency and reliability of machine learning models in healthcare settings.
 
----
-
-## 🚀 How to Run
-
-1. Run notebooks in order:
-
-   * Data preprocessing
-   * Model training
-   * SHAP explainability
-   * Causal inference
-
-2. Outputs will be saved in the `results/` folder
+This framework demonstrates that predictive models alone are insufficient for clinical decision-making without interpretability and causal reasoning.
 
 ---
 
-## 🎯 Key Contributions
+## 5. Conclusion
 
-* End-to-end ML pipeline
-* Explainable AI integration (SHAP)
-* Causal inference for treatment effect
-* Patient-level interpretability
-
----
-
-## 🧠 Conclusion
-
-This project demonstrates how machine learning can go beyond prediction by providing explanations and causal insights.
-
-It highlights the importance of combining:
+This project presents a comprehensive AI system that combines:
 
 * Predictive modeling
-* Explainability
-* Causal reasoning
+* Explainable AI
+* Causal inference
+
+for improved understanding and decision-making in diabetes prediction systems.
 
 ---
 
-## 👨‍💻 Author
+## 6. Future Work
 
-Motahhareh Khorshidzadeh
-Machine Learning / Data Science
+* Integration with deep learning models
+* Real-world clinical dataset validation
+* Deployment as a clinical decision support system
+
+---
+
+## Author
+
+Motahhareh Khorshidzadeh 
+Machine Learning & Data Science
 
 ---
