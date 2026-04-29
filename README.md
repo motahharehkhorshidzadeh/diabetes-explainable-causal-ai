@@ -1,132 +1,114 @@
-# Explainable and Causal Machine Learning for Diabetes Prediction
+# Diabetes Prediction with Explainability & Causal Analysis
+
+## 📌 Project Overview
+
+This project focuses on predicting diabetes risk using machine learning and interpreting model decisions using explainability techniques. Additionally, it introduces causal inference concepts to move beyond correlation and toward understanding potential cause-effect relationships.
 
 ---
 
-## Abstract
+## 📊 Dataset
 
-Early and accurate prediction of diabetes is a critical challenge in healthcare systems. Traditional machine learning models provide high predictive performance but often lack interpretability and causal understanding.
+The dataset used is the **Pima Indians Diabetes Dataset**, which includes medical predictor variables such as:
 
-In this project, we propose an end-to-end framework for diabetes prediction using a Random Forest classifier combined with Explainable AI (SHAP) and causal inference techniques. The system not only predicts disease risk but also explains individual predictions and estimates treatment effects using propensity score methods.
-
----
-
-## Keywords
-
-Machine Learning, Explainable AI, SHAP, Causal Inference, Propensity Score, Healthcare, Diabetes Prediction
-
----
-
-## 1. Introduction
-
-Diabetes Mellitus is one of the most common chronic diseases worldwide. Early detection can significantly improve patient outcomes. However, clinical decision-making requires both predictive accuracy and interpretability.
-
-This project addresses three key questions:
-
-* Can we predict diabetes risk accurately?
-* Why does the model make a specific prediction?
-* Does treatment causally reduce disease risk?
-
----
-
-## 2. Methodology
-
-### 2.1 Data Processing
-
-Patient data includes:
-
-* Age
-* BMI
 * Glucose level
-* Additional clinical features
+* BMI (Body Mass Index)
+* Age
+* Blood pressure
+* Insulin level
 
-Missing values are handled using statistical imputation techniques.
+Target variable:
 
----
-
-### 2.2 Machine Learning Model
-
-A Random Forest classifier is used for diabetes prediction due to its:
-
-* Robustness
-* Non-linearity handling
-* Feature importance extraction capability
+* `Outcome` (0 = Non-diabetic, 1 = Diabetic)
 
 ---
 
-### 2.3 Explainable AI (SHAP)
+## ⚙️ Project Pipeline
 
-SHAP (SHapley Additive Explanations) is used to:
+### 1. Data Preprocessing
 
-* Identify global feature importance
-* Provide local explanations for individual predictions
-* Improve clinical interpretability
+* Handling missing values (replacing invalid zeros with median values)
+* Basic data cleaning
 
----
+### 2. Exploratory Data Analysis (EDA)
 
-### 2.4 Causal Inference
+* Feature distribution analysis
+* Correlation heatmap
+* Target class balance
 
-To estimate treatment effects beyond correlation, we use:
+### 3. Model Training
 
-* Naive Average Treatment Effect (ATE)
-* Propensity Score Modeling
-* Inverse Probability Weighting (IPW)
+* Model used: Random Forest Classifier
+* Train-test split (80/20)
 
-These methods help correct selection bias and estimate causal impact.
+### 4. Model Evaluation
 
----
+* Accuracy
+* Precision, Recall, F1-score
+* Confusion Matrix
+* ROC-AUC Curve
 
-## 3. Experimental Results
+### 5. Model Explainability
 
-### 3.1 Model Performance
+* SHAP (SHapley Additive exPlanations)
+* Global feature importance (beeswarm plot)
+* Local explanation (waterfall plot)
 
-The model achieves strong predictive performance in classifying diabetes risk.
+### 6. Causal Inference (Next Step)
 
-### 3.2 Explainability Results
-
-SHAP analysis shows that:
-
-* Glucose level is the most influential feature
-* BMI and age also significantly contribute to predictions
-
-### 3.3 Causal Analysis
-
-* Naive ATE is biased due to confounding
-* IPW provides a more reliable estimate
-* Treatment is associated with reduced diabetes risk
+* Defining treatment variables
+* Estimating treatment effects (ATE)
+* Propensity score methods
 
 ---
 
-## 4. Discussion
+## 📈 Results
 
-The integration of SHAP and causal inference enhances both transparency and reliability of machine learning models in healthcare settings.
+The model demonstrates solid performance in predicting diabetes risk. SHAP analysis shows that:
 
-This framework demonstrates that predictive models alone are insufficient for clinical decision-making without interpretability and causal reasoning.
-
----
-
-## 5. Conclusion
-
-This project presents a comprehensive AI system that combines:
-
-* Predictive modeling
-* Explainable AI
-* Causal inference
-
-for improved understanding and decision-making in diabetes prediction systems.
+* Glucose is the most influential feature
+* BMI and Age also contribute significantly
 
 ---
 
-## 6. Future Work
+## 🧠 Key Insights
 
-* Integration with deep learning models
-* Real-world clinical dataset validation
-* Deployment as a clinical decision support system
+* Machine learning models can effectively predict diabetes risk
+* Explainability tools help interpret predictions at both global and local levels
+* Causal inference is required to move from correlation to actionable insights
+
+---
+
+## 🚀 Future Improvements
+
+* Use additional models (XGBoost, Logistic Regression)
+* Perform hyperparameter tuning
+* Apply causal inference methods (matching, IPW)
+* Deploy as a web app (Streamlit)
 
 ---
 
-## Author
+## 🛠️ Tech Stack
 
-Motahhareh Khorshidzadeh 
-Machine Learning & Data Science
+* Python
+* Scikit-learn
+* SHAP
+* Pandas, NumPy
+* Matplotlib, Seaborn
 
 ---
+
+## 📎 How to Run
+
+1. Open the notebook in Google Colab
+2. Install dependencies:
+
+   ```bash
+   pip install shap
+   ```
+3. Run all cells
+
+---
+
+## 📬 Contact
+
+For questions or collaboration, feel free to reach out.
