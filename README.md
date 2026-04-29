@@ -1,4 +1,4 @@
-# Diabetes Prediction with Explainability & Causal Analysis
+# From Prediction to Causality: Explainable Diabetes Risk Modeling with IPW
 
 ## 📌 Project Overview
 
