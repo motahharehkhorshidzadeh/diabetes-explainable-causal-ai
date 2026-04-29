@@ -1,114 +1,131 @@
-# From Prediction to Causality: Explainable Diabetes Risk Modeling with IPW
+🧠 From Prediction to Causality: Explainable Diabetes Risk Modeling
+📌 Overview
 
-## 📌 Project Overview
+This project combines Machine Learning, Explainable AI, and Causal Inference to analyze the relationship between obesity and diabetes risk using the Pima Indians Diabetes dataset.
 
-This project focuses on predicting diabetes risk using machine learning and interpreting model decisions using explainability techniques. Additionally, it introduces causal inference concepts to move beyond correlation and toward understanding potential cause-effect relationships.
+Unlike traditional predictive models, this project goes beyond correlation and estimates causal effects using advanced econometric techniques such as Inverse Probability Weighting (IPW) and Doubly Robust Estimation (DR).
 
----
+🎯 Objectives
+Build a machine learning model to predict diabetes risk
+Interpret model decisions using SHAP explainability
+Move beyond prediction to estimate causal effects
+Quantify the impact of obesity (BMI > 30) on diabetes
+Compare naive vs adjusted causal estimates
+📊 Dataset
 
-## 📊 Dataset
+Pima Indians Diabetes Dataset
 
-The dataset used is the **Pima Indians Diabetes Dataset**, which includes medical predictor variables such as:
+Features include:
 
-* Glucose level
-* BMI (Body Mass Index)
-* Age
-* Blood pressure
-* Insulin level
+Pregnancies
+Glucose
+Blood Pressure
+Skin Thickness
+Insulin
+BMI
+Diabetes Pedigree Function
+Age
 
-Target variable:
+Target:
 
-* `Outcome` (0 = Non-diabetic, 1 = Diabetic)
+Outcome (0 = Non-diabetic, 1 = Diabetic)
+⚙️ Methodology
+1. Data Preprocessing
+Handled missing/invalid values (zeros replaced with median)
+Cleaned dataset for modeling
+2. Exploratory Data Analysis (EDA)
+Feature distributions
+Correlation analysis
+Target imbalance check
+3. Machine Learning Model
+Model: Random Forest Classifier
+Evaluation metrics:
+Accuracy
+Precision / Recall / F1-score
+ROC-AUC
+4. Model Explainability (SHAP)
+Global feature importance analysis
+Local explanations for individual predictions
+Key finding:
+Glucose is the most influential predictor
+BMI and Age also strongly contribute
+🧠 Causal Inference Framework
+📌 Treatment Definition
 
----
+Obesity is defined as:
 
-## ⚙️ Project Pipeline
+BMI > 30
 
-### 1. Data Preprocessing
+📌 Propensity Score Modeling
 
-* Handling missing values (replacing invalid zeros with median values)
-* Basic data cleaning
+A logistic regression model estimates the probability of being obese given confounders:
 
-### 2. Exploratory Data Analysis (EDA)
+Age
+Glucose
+Blood Pressure
+Insulin
+Pregnancies
+Diabetes Pedigree Function
+📌 Inverse Probability Weighting (IPW)
 
-* Feature distribution analysis
-* Correlation heatmap
-* Target class balance
+IPW is used to adjust for confounding and estimate the causal effect:
 
-### 3. Model Training
+Naive ATE: simple difference in means
+IPW ATE: confounder-adjusted estimate
+📌 Doubly Robust Estimation (DR)
 
-* Model used: Random Forest Classifier
-* Train-test split (80/20)
+A hybrid approach combining:
 
-### 4. Model Evaluation
+Outcome regression model
+Propensity score weighting
 
-* Accuracy
-* Precision, Recall, F1-score
-* Confusion Matrix
-* ROC-AUC Curve
+This ensures consistency if either model is correctly specified.
 
-### 5. Model Explainability
+📈 Results
+Method	Estimated Effect of Obesity on Diabetes
+Naive ATE	Biased estimate
+IPW ATE	Adjusted causal effect
+Doubly Robust ATE	Most robust estimate
+Key Insight:
 
-* SHAP (SHapley Additive exPlanations)
-* Global feature importance (beeswarm plot)
-* Local explanation (waterfall plot)
+Obesity shows a positive causal effect on diabetes risk across all methods.
 
-### 6. Causal Inference (Next Step)
+🔍 Key Insights
+Machine learning models are effective for prediction but do not imply causation
+Obesity significantly increases diabetes risk even after adjusting for confounders
+Causal inference methods reduce bias from observational data
+Doubly Robust estimation provides the most reliable effect estimate
+🧪 Causal Assumptions
 
-* Defining treatment variables
-* Estimating treatment effects (ATE)
-* Propensity score methods
+This analysis assumes:
 
----
+No unmeasured confounding
+Positivity (overlap condition holds)
+Correct specification of at least one model (IPW or outcome model)
+📊 Technologies Used
+Python
+Pandas, NumPy
+Scikit-learn
+SHAP
+Matplotlib, Seaborn
+🚀 How to Run
+Clone repository
+Install dependencies:
+pip install shap scikit-learn pandas numpy matplotlib seaborn
+Run notebook step by step in Jupyter / Colab
+📌 Project Highlights
+End-to-end ML + Causal Inference pipeline
+Explainable AI using SHAP
+IPW and Doubly Robust estimation
+Transition from prediction → causation
+Healthcare-focused real-world dataset
+📬 Future Improvements
+Add confidence intervals via bootstrap
+Use XGBoost / causal forests
+Perform sensitivity analysis for unmeasured confounding
+Deploy as interactive Streamlit app
+🧠 Summary
 
-## 📈 Results
+This project demonstrates that:
 
-The model demonstrates solid performance in predicting diabetes risk. SHAP analysis shows that:
-
-* Glucose is the most influential feature
-* BMI and Age also contribute significantly
-
----
-
-## 🧠 Key Insights
-
-* Machine learning models can effectively predict diabetes risk
-* Explainability tools help interpret predictions at both global and local levels
-* Causal inference is required to move from correlation to actionable insights
-
----
-
-## 🚀 Future Improvements
-
-* Use additional models (XGBoost, Logistic Regression)
-* Perform hyperparameter tuning
-* Apply causal inference methods (matching, IPW)
-* Deploy as a web app (Streamlit)
-
----
-
-## 🛠️ Tech Stack
-
-* Python
-* Scikit-learn
-* SHAP
-* Pandas, NumPy
-* Matplotlib, Seaborn
-
----
-
-## 📎 How to Run
-
-1. Open the notebook in Google Colab
-2. Install dependencies:
-
-   ```bash
-   pip install shap
-   ```
-3. Run all cells
-
----
-
-## 📬 Contact
-
-For questions or collaboration, feel free to reach out.
+Predictive accuracy is not enough — understanding causality is essential for real-world decision making.
